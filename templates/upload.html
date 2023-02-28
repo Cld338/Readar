@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script type="text/javascript" src="../json/book_data.json"></script>
+<html>
+
+<head>
+    <title>Reada</title>
+    <script src="https://kit.fontawesome.com/08e60da0c5.js" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        * {
+            text-align: center;
+            margin: 0;
+            color: #304155;
+            font-family: 'MaplestoryOTFBold', sans-serif;
+        }
+        div {
+            margin: auto;
+        }
+        @font-face {
+            font-family: 'MaplestoryOTFBold';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+
+    <style>
+        .main {
+            /* background-color: rgba(255, 192, 203, 0.507); */
+            background-color: #fff 
+            /* rgba(245, 225, 218, 1); */
+        }
+    </style>
+    <!-- 메뉴바 -->
+    <style>
+        nav{
+            font-size: 40px;
+            position: relative;
+        }
+        nav ul{
+            padding: 0;
+            margin: 0 auto;
+            width: auto;
+        }
+        nav a{
+            line-height: 100px;
+            height: 50px;
+        }
+        nav li a{
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+        nav li:last-child a{
+            border-right: 0;
+        }
+        #menu-ul{
+            margin: 0;
+            padding: 0;
+            background-color: rgb(77, 77, 77);
+            text-align: center;
+        }
+        #menu-contents{
+            /*position: relative;*/
+            display: inline-block;
+        }
+        #menu-contents a{
+            color: #FFFFFF;
+            text-align: center;
+            padding: 14.5px 16px;
+            text-decoration: none;
+        }
+        #menu-contents a:hover{
+            /* color: #597812; */
+            color: #FFD400;
+            font-weight:normal;
+        }
+        .menu {
+           width: 5000px;
+           height: 100px;
+           text-align: center;
+           max-width: 100%;
+           background-position: center;
+           background-size: cover;
+           background-color: #333333;
+           color: white;
+           position: absolute;z-index: 1;
+        }
+    </style> 
+
+
+    <!-- 검색 -->
+    <style>
+        .search {
+            position: relative;
+            width: 750px;
+            margin-top: 100px;
+            margin-left: 10px;
+        }
+
+        #title-input{
+            width: 750px;
+            height: 60px;
+            border: 1px solid #bbb;
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-size: 40px;
+        }
+
+        #search-icon {
+            position: absolute;
+            width: 34px;
+            top: 25px;
+            right: 15px;
+            margin: 0;
+        }
+    </style>
+    <style>
+        #title-select-ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            /* margin-top: -20px; */
+            
+            
+        }
+        #title-select-ul::-webkit-scrollbar {
+            display: none;
+        }
+
+        #title-select{
+            margin: 0;
+            margin-left: 10px;
+            width: 774px;
+            height: 260px;
+            display: inline-block;
+            border: none;
+            position: relative;
+        }
+
+        #title-select ul {
+            position: absolute;
+            width: 100%;
+            overflow: hidden;
+            -moz-transition: 0.5s;
+            -ms-transition: 0.5s;
+            -o-transition: 0.5s;
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+            overflow: auto;
+            max-height: 260px;
+            line-height: 0;
+            border: none;
+        }
+        .option-btn {
+            border: none;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            padding: 0;
+            font-size: 35px;
+            background: #fff;
+            
+        }
+        .option-btn:hover {
+            background: rgb(77, 77, 77);
+            color: #fff;
+        }
+
+    </style>
+
+
+    <!-- 파일 업로드 -->
+    <style>
+        input[type=file] {
+            width: 450px;
+            margin-left: 26px;
+            font-size: 35px;
+        }
+
+        input[type=file]::file-selector-button {
+            position: relative;
+            width: 200px;
+            height: 80px;
+            background: #fff;
+            border: 5px solid #bbb;
+            font-family: 'MaplestoryOTFBold', sans-serif;
+            color: #304155;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-left: 10px;
+
+        }
+
+        input[type=file]::file-selector-button:hover {
+            background: rgb(77, 77, 77);
+            color: #fff;
+        }
+    </style>
+    <!-- 제출 버튼 -->
+    <style>
+        input[type=submit] {
+            font-size: 30px;
+            height: 80px;
+            margin-right: 10px;
+            background: #fff;
+            border: 5px solid #bbb;
+            border-radius: 10px;
+        }
+
+        input[type=submit]:hover {
+            background-color: rgb(77, 77, 77);
+            color: #fff;
+        }
+    </style>
+
+    <!-- 이미지 -->
+    <style>
+        .matched-image {
+            margin-left: 26px;
+            width: 676px;
+            height: auto;
+        }
+    </style>
+    <!-- form -->
+    <style>
+        #form-cover {
+            display: inline-block;
+        }
+    </style>
+
+    <!-- 모달 팝업 -->
+    <style>
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            
+            /* 숨기기 */
+            z-index: -1;
+            opacity: 0;
+        }
+        .show {
+            opacity: 1;
+            z-index: 1000;
+            transition: all .5s;
+        }
+        .window {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .popup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -30vh);
+            background-color: #ffffff;
+            box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+            width: 80%;
+            height: 250px;
+            border-radius: 5px;
+            /* 초기에 약간 아래에 배치 */
+            /* transform: translate(-50%, -135%); */
+        }
+        #close-add-book{
+            width:100%;
+            height:50px;
+            font-size: 35px;
+        }
+    </style>
+    <style>
+        #add-book-form{
+            font-size: 40px;
+        }
+        #add-book-input{
+            font-size: 40px;
+            margin-top: 30px;
+            border-radius: 10px;
+        }
+    </style>
+    <script>
+        function show_add_book () {
+            document.querySelector(".background").className = "background show";
+        }
+        function close_add_book () {
+            document.querySelector(".background").className = "background";
+        }
+    </script>
+    
+</head>
+
+
+
+
+<body class="main">
+    <body topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" style="background-color:#dee2e6">
+    <div class="menu">
+        <nav>
+            <ul id="menu-ul">
+                <li id="menu-contents"><a href=""></a></li>
+                <li id="menu-contents"><a href="">Home</a></li>
+                <li id="menu-contents"><a href="https://github.com/Cld338/">GitHub</a></li>
+                <li id="menu-contents"><a onclick="show_add_book()" style="cursor: pointer;">새 책 등록</a></li>
+            </ul>
+        </nav>
+    </div>
+    </body>
+    {% if search %}
+        <style>
+            #title-input{
+                border-bottom-left-radius: 0px;
+                border-bottom-right-radius: 0px;
+            }
+            #title-select ul{
+                border: 1px solid #bbb;
+            }
+        </style>
+    {% endif %}
+    <div style="height: 40px;"></div>
+    <div id="form-cover">
+        <form action="./" method="POST" enctype="multipart/form-data" class="filebox">
+            <div class="search">
+                <input type="text" name="queue" id="title-input" placeholder="검색어 입력" value={{queue}}>
+                <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png" id="search-icon">
+            </div>
+        </form>
+        <form action="./" method="POST" enctype="multipart/form-data">
+            <!-- 검색바 -->
+            <div id='title-select'>
+                <ul id="title-select-ul">
+                    {% for d in titles%}
+                        <input type="button" class="option-btn"  onclick="changeTitle('{{d[0]}}')" value="{{d[0]}}">
+                    {% endfor %}
+                </ul>
+                <input type="text" name="title" id=title hidden value="">
+            </div>
+            
+            <script>
+                function changeTitle(title){
+                    const titleElement 
+                        = document.getElementById('title');
+                    titleElement.value = title;
+                    console.log(title)
+                }
+            </script>
+            <div style="height: 10px;"></div>
+            {% if title_fail %}
+                <div style="color: rgba(250, 76, 114, 0.87); font-size: 30px;">
+                    ※제목을 선택해주세요.
+                </div>
+            {% endif %}
+            <div style="height: 50px;"></div>
+            <input type="file" name="file" style="float: left;" />
+            <input type="submit" name="submit" value="submit" style="float: right;">
+            <br>
+            <div style="height: 60px;"></div>
+            <br>
+            {% if img %}
+                <img class="matched-image" src="../static/match/{{img}}" alt="">
+            {% endif %}
+        </form>
+        <br>
+        <div style="height: 10px;"></div>
+        {% if upload_fail %}
+        <div style="color: rgba(250, 76, 114, 0.87); font-size: 30px;">
+            ※파일을 업로드 해주세요.
+        </div>
+        {% endif %}
+    </div>
+    
+    <div class="background">
+        <div class="window">
+            <div class="popup">
+                <button id="close-add-book" onclick="close_add_book()">
+                    닫기&nbsp;
+                    <i class="fa-solid fa-xmark" style="-webkit-text-stroke: 2px; position: absolute; margin-top: 5px;" ></i>
+                </button>
+                <form action="./" method="POST" id="add-book-form">
+                    <label>
+                        <input type="text" id="add-book-input" name="ISBN" placeholder="※ISBN을 입력해주세요">
+                    </label>
+                </form>
+                <div style="font-size: 35px;">
+                    {{add_book}}
+                    {{update_data}}
+                </div>
+            <div>
+        <div>
+    <div>
+    {% if add_book %}
+        <script>
+            show_add_book();
+        </script>
+    {% endif %}
+</body>
+
+</html>
