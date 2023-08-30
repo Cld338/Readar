@@ -6,8 +6,9 @@
 /model/yolov8x.pt
 /model/yolov8s.pt
 
-/SSL
-# /SSL/key.pem
+# /SSL
+/SSL/key.pem
+/SSL/cert.pem
 !/SSL/.keep
 
 /__pycache
