@@ -2,3 +2,5 @@
 /static/match
 
 /model
+
+/__pycache
