@@ -1,6 +1,7 @@
 /static/books
 /static/match
-
 /model
+/SSL/cert.pem
+/SSL/key.pem
 
 /__pycache
