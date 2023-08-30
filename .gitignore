@@ -1,7 +1,7 @@
 /static/books
 /static/match
 /static/json/book_data.json
-/model
+# /model
 /SSL/cert.pem
 /SSL/key.pem
 
