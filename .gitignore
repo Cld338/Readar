@@ -1,5 +1,6 @@
 /static/books
 /static/match
+/static/json/book_data.json
 /model
 /SSL/cert.pem
 /SSL/key.pem
