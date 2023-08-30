@@ -10,8 +10,8 @@ import os
 
 
 # https://colab.research.google.com/drive/1RoKdGm3sNbQMlvocY_zxFa7wfl4l-NjC#scrollTo=iMOz0e9Tld6-&uniqifier=1
-# https://universe.roboflow.com/eltanma/bookdetection-yoeop/dataset/2#
-# https://universe.roboflow.com/bookdetection-lgtpa/book-spine-detector <- 제일 잘 됨!
+# book1 - https://universe.roboflow.com/eltanma/bookdetection-yoeop/dataset/2#
+# book2 - https://universe.roboflow.com/bookdetection-lgtpa/book-spine-detector <- 제일 잘 됨!
 currDir = os.path.dirname(os.path.realpath(__file__))
 app = Flask(__name__, static_folder="./templates/static")
 app.config["SECRET_KEY"] = "secret!"
@@ -52,7 +52,6 @@ def receive_image(image):
     # image = cv2.flip(image, 1)
     # res = match(image, template, cv2.TM_CCOEFF_NORMED, [0.6, 1])
     frame = detectYOLO(model, image, template, confThreshold=0.55, HSVThreshold=0.5)
-    # print(score)
     
     encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 90]
     result, frame_encoded = cv2.imencode(".jpg", frame, encode_param)
